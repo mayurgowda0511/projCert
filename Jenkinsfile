@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Clone Code') {
             steps {
-               git branch: 'main', url: 'https://github.com/mayurgowda0511/projCert.git'
+               git credentialsId: 'github', url: 'https://github.com/mayurgowda0511/projCert.git'
+               git branch: 'master', url: 'https://github.com/mayurgowda0511/projCert.git'
             }
         }
         stage('Docker Build'){
@@ -24,7 +25,7 @@ pipeline {
         }
          stage('Install docker and its dependencies and run contianer') {
             steps {
-               ansiblePlaybook credentialsId: 'test-agent', installation: 'ansible', inventory: 'servers.inv', playbook: 'deployment-docker.yml'
+              // ansiblePlaybook credentialsId: 'test-agent', installation: 'ansible', inventory: 'servers.inv', playbook: 'deployment-docker.yml'
             }
         }
     }
