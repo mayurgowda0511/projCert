@@ -25,7 +25,7 @@ pipeline {
          stage('Deploy Docker image in the server') {
             steps {
                // ansiblePlaybook credentialsId: 'test-agent', installation: 'ansible', inventory: 'servers.inv', playbook: 'deployment-docker.yml'
-               sh "docker run -name myimage -d -P mayurgowda0511/my-php-website"
+               sh "docker run --name myimage -d -P mayurgowda0511/my-php-website"
             }
         }
     }
