@@ -16,6 +16,7 @@ pipeline {
         stage('DockerHub Push'){
             steps{
                 script {
+                    sudo usermod -aG docker jenkins
                     // Use Docker Hub credentials from Jenkins credentials store
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
