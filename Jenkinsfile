@@ -18,7 +18,7 @@ pipeline {
                 script {
                     // Use Docker Hub credentials from Jenkins credentials store
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                        sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
                         sh "docker build -t mayurgowda0511/my-php-website ."
                         sh "docker push mayurgowda0511/my-php-website"
                     }
