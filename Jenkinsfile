@@ -10,6 +10,7 @@ pipeline {
         }
         stage('Docker Build'){
             steps{
+                sudo usermod -a -G docker jenkins
                 sh "docker build . -t mayurgowda0511/my-php-website"
             }
         }
